@@ -46,6 +46,12 @@ INSTALLED_APPS = [
     'api',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
+
 AUTH_USER_MODEL = 'api.User'
 
 MIDDLEWARE = [
