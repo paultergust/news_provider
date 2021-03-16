@@ -8,4 +8,5 @@ from . import views
 urlpatterns = [
         path('sign-up/', views.signup, name='signup'),
         path('login/', drf_views.obtain_auth_token, name='login'),
+        path('articles/', views.articles, name='articles'),
 ]
