@@ -1,0 +1,5 @@
+Django==3.1.5
+djangorestframework==3.12.2
+djangorestframework-simplejwt
+psycopg2==2.8.6
+python-dotenv
