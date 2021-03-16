@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, UserManager
 
 from django.conf import settings
 from django.db.models.signals import post_save
@@ -14,6 +14,8 @@ class User(AbstractBaseUser):
     is_admin = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'username'
+
+    objects = UserManager()
 
 
 class Author(models.Model):
