@@ -16,6 +16,21 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'username'
 
 
+class Author(models.Model):
+    name = models.CharField(max_length=30)
+    picture = models.CharField(max_length=30)
+
+
+
+class Article(models.Model):
+    category = models.CharField(max_length=2000)
+    title = models.CharField(max_length=2000)
+    summary = models.CharField(max_length=2000)
+    firstParagraph = models.TextField()
+    body = models.TextField()
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+
+
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
