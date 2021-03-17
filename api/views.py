@@ -68,6 +68,13 @@ class ArticlesUpdate(APIView):
         
         serializer.update(article, request.data)
         return Response(serializer.data, status=200)
+
+
+    def delete(self, request, pk):
+        article = self.get_object(pk)
+        article.delete()
+        return Response(status=204)
+        
             
 
     def get_object(self, pk):
