@@ -13,5 +13,4 @@ class AdminAuthentication(permissions.BasePermission):
 
         token_query = Token.objects.filter(key=request.headers['token']).first()
         user = token_query.user
-        print(user.is_admin)
         return user.is_admin
