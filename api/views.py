@@ -1,9 +1,11 @@
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.authtoken.models import Token
 
 from api.serializers import UserSerializer, ArticleSerializer
 from api.models import Article
+from api.permissions import AdminAuthentication
 
 # Create your views here.
 
@@ -35,6 +37,15 @@ def articles(request):
         return Response(data)
 
     return Response(data.errors)
+
+
+class ArticlesCrud(ListAPIView):
+    permission_classes=[AdminAuthentication,]
+
+    def get(self, request):
+        articles = Article.objects.all()
+        data = ArticleSerializer(articles).data
+        return Response(data)
 
 
 def valid_token(token):

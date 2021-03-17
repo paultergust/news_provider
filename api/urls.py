@@ -9,4 +9,5 @@ urlpatterns = [
         path('sign-up/', views.signup, name='signup'),
         path('login/', drf_views.obtain_auth_token, name='login'),
         path('articles/', views.articles, name='articles'),
+        path('admin/articles/', views.ArticlesCrud.as_view(), name='articles_crud'),
 ]
