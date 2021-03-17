@@ -57,7 +57,7 @@ class ArticlesList(APIView):
         return Response(serializer, status=201)
 
     
-class ArticlesUpdate(APIView):
+class ArticleView(APIView):
     permission_classes = [AdminAuthentication,]
 
     def patch(self, request, pk):
