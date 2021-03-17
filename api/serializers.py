@@ -31,4 +31,7 @@ class ArticleSerializer(serializers.Serializer):
         fields = '__all__'
         depth = 1
 
-
+    def create(self, validated_data):
+        article = Article(**validated_data)
+        article.save()
+        return article
