@@ -58,15 +58,16 @@ class ArticlesList(APIView):
 
     
 class ArticlesUpdate(APIView):
+    permission_classes = [AdminAuthentication,]
 
     def patch(self, request, pk):
         article = self.get_object(pk)
-        serializer = ArticleSerializer(article, data=request.data)
+        serializer = ArticleSerializer(article, data=request.data, partial=True)
         if not serializer.is_valid():
             return Response(serializer.errors, status=400)
         
-        serializer.save()
-        return Response(serializer, status=200)
+        serializer.update(article, request.data)
+        return Response(serializer.data, status=200)
             
 
     def get_object(self, pk):

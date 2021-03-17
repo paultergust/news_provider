@@ -35,3 +35,14 @@ class ArticleSerializer(serializers.Serializer):
         article = Article(**validated_data)
         article.save()
         return article
+
+
+    def update(self, instance, validated_data):
+        instance.category = validated_data.get('category', instance.category)
+        instance.title = validated_data.get('title', instance.title)
+        instance.summary = validated_data.get('summary', instance.summary)
+        instance.firstParagraph = validated_data.get('firstParagraph', instance.firstParagraph)
+        instance.body = validated_data.get('body', instance.body)
+        instance.author = validated_data.get('author', instance.author)
+        instance.save()
+        return instance
