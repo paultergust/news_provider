@@ -22,8 +22,9 @@ def signup(request):
 
 
 #check request token validity
-def valid_token(token):
+def valid_token(request):
     try:
+        token = request.headers['token']
         aux_token = Token.objects.filter(key=token)[0]
     except:
         return False
@@ -32,14 +33,13 @@ def valid_token(token):
 
 @api_view(['GET'])
 def articles(request):
-    token = request.headers['token']
     try:
         category = request.query_params['category']
         articles = Article.objects.filter(category=category)
     except:
         articles = Article.objects.all()
 
-    if valid_token(token):
+    if valid_token(request):
         data = ArticleSerializer(articles, many=True, anonymous=False).data
         return Response(data)
     else:
