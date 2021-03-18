@@ -107,6 +107,16 @@ python manage.py runserver --settings=news_provider/dev_settings
 # Production Mode Setup  
 
 You'll need to have installed Docker, docker-compose and have a 'dockerd' instance running.
+
+Clone repository
+
+```bash
+git clone git@github.com:paultergust/news_provider.git
+```
+Change directory
+```bash
+cd news_provider
+```
 After all set, just run:
 
 ```bash
@@ -134,7 +144,7 @@ sudo systemctl stop postgresql
 <a name="models"></a>
 # Models
 
-###Article:
+##Article:
   ```json
   {
     "id": "39df53da-542a-3518-9c19-3568e21644fe",
@@ -150,7 +160,7 @@ sudo systemctl stop postgresql
 
 ```
 
-###Author:
+##Author:
 ```json
 
   {
@@ -160,7 +170,7 @@ sudo systemctl stop postgresql
   }
 ```
 
-###User:
+##User:
 ```json
 
   {
