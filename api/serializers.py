@@ -33,6 +33,15 @@ class ArticleSerializer(serializers.ModelSerializer):
         depth = 1
 
 
+    def __init__(self, *args, **kwargs):
+        anonymous = kwargs.pop('anonymous', None)
+
+        super(ArticleSerializer, self).__init__(*args, **kwargs)
+
+        if anonymous:
+            self.fields.pop('body')
+
+
     def create(self, validated_data, author_id):
         article = Article(**validated_data)
         article.author_id = author_id

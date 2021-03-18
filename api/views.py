@@ -23,26 +23,29 @@ def signup(request):
 
 #check request token validity
 def valid_token(token):
-    aux_token = Token.objects.filter(key=token)[0]
+    try:
+        aux_token = Token.objects.filter(key=token)[0]
+    except:
+        return False
     return str(aux_token) == token
 
 
 @api_view(['GET'])
 def articles(request):
     token = request.headers['token']
-    data = {}
     try:
         category = request.query_params['category']
         articles = Article.objects.filter(category=category)
     except:
         articles = Article.objects.all()
-    finally:
-        data = ArticleSerializer(articles, many=True).data
 
     if valid_token(token):
+        data = ArticleSerializer(articles, many=True, anonymous=False).data
+        return Response(data)
+    else:
+        data = ArticleSerializer(articles, many=True, anonymous=True).data
         return Response(data)
 
-    return Response(data.errors)
 
 # ADMIN/ARTICLES CLASS VIEW
 class ArticlesList(APIView):
@@ -90,7 +93,6 @@ class ArticleView(APIView):
     def get(self, request, pk):
         article = self.get_object(pk)
         serializer = ArticleSerializer(article)
-        print(article.title)
         return Response(serializer.data)
             
 
@@ -142,7 +144,6 @@ class AuthorView(APIView):
     def get(self, request, pk):
         author = self.get_object(pk)
         serializer = AuthorSerializer(author)
-        print(author.title)
         return Response(serializer.data)
             
 
