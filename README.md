@@ -105,7 +105,8 @@ python manage.py runserver --settings=news_provider/dev_settings
 <a name="prod_setup"></a>
 # Production Mode Setup  
 
-Just run:
+You'll need to have installed Docker, docker-compose and have a 'dockerd' instance running.
+After all set, just run:
 
 ```bash
 make prod
