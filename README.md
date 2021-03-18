@@ -108,3 +108,11 @@ Just run:
 ```bash
 make prod
 ```
+
+
+OBS: If you get an error on this step, make sure you have port 5432 open. Maybe stop your local PostgreSQL service
+
+
+```bash
+sudo systemctl stop postgresql
+```
