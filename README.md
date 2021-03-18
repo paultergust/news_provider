@@ -18,9 +18,11 @@ A simple project to simulate a news provider API. Made with Django, DRF and Post
           
 # Requirements 
  
-- [Python](https://www.python.org/downloads/)
-- [Pip](https://pip.pypa.io/en/stable/installing/)
-- [PostgreSQL](https://www.postgresql.org/download/)
+- [Python](https://www.python.org/)
+- [Pip](https://pip.pypa.io/)
+- [Django](www.djangoproject.com)
+- [Django REST Framework](https://www.django-rest-framework.org/)
+- [PostgreSQL](https://www.postgresql.org/)
 
 
 
