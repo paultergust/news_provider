@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'news_provider.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'production': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',
@@ -97,15 +97,6 @@ DATABASES = {
         'HOST': 'db',
         'PORT': '5432',
     },
-
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'news_api_dev',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
 }
 
 # Password validation
