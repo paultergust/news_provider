@@ -12,10 +12,11 @@ A simple project to simulate a news provider API. Made with Django, DRF and Post
 
 - [Requirements](#requirements)
 - [Virtual environment](#virtual-environment)
-- [Installation](#installation)
 - [Development Mode Setup](#dev_setup)
 - [Production Mode Setup](#prod_setup)
+- [Endpoints](#endpoints)
           
+<a name="requirements"></a>
 # Requirements 
  
 - [Python](https://www.python.org/)
@@ -55,8 +56,10 @@ source env/bin/activate
 ```
 
 
-<a name="installation"></a>
-# Installation
+<a name="dev_setup"></a>
+# Development Mode Setup  
+
+## Installation
 
 Clone repository
 
@@ -71,9 +74,6 @@ Install all dependencies
 ```bash
 pip install -r requirements.txt
 ```
-
-<a name="dev_setup"></a>
-# Development Mode Setup  
 
 Make sure you have PostgreSQL runnint on port 5432. Then setup a database with credentials found in news_provider/settings.py:
   
@@ -119,4 +119,53 @@ OBS: If you get an error on this step, make sure you have port 5432 open. Maybe 
 
 ```bash
 sudo systemctl stop postgresql
+```
+<a name="endpoints"></a>
+# Endpoints
+
+- Login API: `/api/login/`
+- Sign-up API: `/api/sign-up/`
+- List articles: `/api/articles/?category=:slug`
+- Administrator restricted APIs:
+  - CRUD `/api/admin/authors/`
+  - CRUD `/api/admin/articles/`
+
+
+<a name="models"></a>
+# Models
+
+###Article:
+  ```json
+  {
+    "id": "39df53da-542a-3518-9c19-3568e21644fe",
+    "author": {
+      "id": "2d460e48-a4fa-370b-a2d0-79f2f601988c",
+      "name": "Author Name",
+      "picture": "https://picture.url"
+    },
+    "category": "Category",
+    "title": "Article title",
+    "summary": "This is a summary of the article"
+  }
+
+```
+
+###Author:
+```json
+
+  {
+    "id": "2d460e48-a4fa-370b-a2d0-79f2f601988c",
+    "name": "Author Name",
+    "picture": "https://picture.url"
+  }
+```
+
+###User:
+```json
+
+  {
+    "username": "Username",
+    "password": "write-only hashed password",
+    "is_admin": false,
+  }
 ```
