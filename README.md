@@ -144,7 +144,7 @@ sudo systemctl stop postgresql
 <a name="models"></a>
 # Models
 
-##Article:
+### Article:
   ```json
   {
     "id": "39df53da-542a-3518-9c19-3568e21644fe",
@@ -160,7 +160,7 @@ sudo systemctl stop postgresql
 
 ```
 
-##Author:
+### Author:
 ```json
 
   {
@@ -170,7 +170,7 @@ sudo systemctl stop postgresql
   }
 ```
 
-##User:
+### User:
 ```json
 
   {
