@@ -31,7 +31,7 @@ def articles(request):
     except:
         articles = Article.objects.all()
     finally:
-        data = ArticleSerializer(articles).data
+        data = ArticleSerializer(articles, many=True).data
 
     if valid_token(token):
         return Response(data)
@@ -50,11 +50,16 @@ class ArticlesList(APIView):
 
     def post(self, request):
         serializer = ArticleSerializer(data=request.data)
+        try:
+            author_id = request.data['author_id']
+        except:
+            return Response(serializer.errors, status=400)
+
         if not serializer.is_valid():
             return Response(serializer.errors, status=400)
         
-        serializer.save()
-        return Response(serializer, status=201)
+        serializer.create(request.data, author_id)
+        return Response(serializer.data, status=201)
 
     
 class ArticleView(APIView):
@@ -75,6 +80,12 @@ class ArticleView(APIView):
         article.delete()
         return Response(status=204)
         
+
+    def get(self, request, pk):
+        article = self.get_object(pk)
+        serializer = ArticleSerializer(article)
+        print(article.title)
+        return Response(serializer.data)
             
 
     def get_object(self, pk):
