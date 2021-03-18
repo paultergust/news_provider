@@ -13,7 +13,8 @@ A simple project to simulate a news provider API. Made with Django, DRF and Post
 - [Requirements](#requirements)
 - [Virtual environment](#virtual-environment)
 - [Installation](#installation)
-- [Setup](#setup)
+- [Development Mode Setup](#dev_setup)
+- [Production Mode Setup](#prod_setup)
           
 # Requirements 
  
@@ -68,10 +69,10 @@ Install all dependencies
 pip install -r requirements.txt
 ```
 
-<a name="setup"></a>
-# Setup  
+<a name="dev_setup"></a>
+# Development Mode Setup  
 
-Make sure you have PostgreSQL runnint on port 5432. Then setup a databse with credentials found in news_provider/settings.py:
+Make sure you have PostgreSQL runnint on port 5432. Then setup a database with credentials found in news_provider/settings.py:
   
 ```python
 # news_provider/settings.py
@@ -86,4 +87,24 @@ DATABASES = {
         'PORT': 5432,
     }
 }
+```
+
+Run django migrations
+```bash
+python manage.py makemigrations
+```
+
+
+Run django server with specific settings file
+```bash
+python manage.py runserver --settings=news_provider/dev_settings
+```
+
+<a name="prod_setup"></a>
+# Production Mode Setup  
+
+Just run:
+
+```bash
+make prod
 ```
